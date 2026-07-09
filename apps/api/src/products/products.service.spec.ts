@@ -50,7 +50,9 @@ describe('ProductsService', () => {
   describe('setActive', () => {
     it('throws NotFound when the product does not exist', async () => {
       repo.findOne.mockResolvedValue(null);
-      await expect(service.setActive('missing-id', false)).rejects.toBeInstanceOf(NotFoundException);
+      await expect(service.setActive('missing-id', false)).rejects.toBeInstanceOf(
+        NotFoundException,
+      );
     });
 
     it('does not write when the product is already in the requested state', async () => {
@@ -72,7 +74,9 @@ describe('ProductsService', () => {
 
   describe('create', () => {
     it('builds the entity from the input and returns the mapped product', async () => {
-      repo.create.mockImplementation((data: Partial<ProductEntity>) => Object.assign(buildEntity(), data));
+      repo.create.mockImplementation((data: Partial<ProductEntity>) =>
+        Object.assign(buildEntity(), data),
+      );
       repo.save.mockImplementation(async (e: ProductEntity) => e);
       const result = await service.create({
         name: 'Full Sleeve',
