@@ -10,9 +10,9 @@
     "lint": "eslint src",
     "test": "vitest run",
     "test:watch": "vitest",
-    "migration:run": "typeorm-ts-node-esm migration:run -d src/database/data-source.ts",
-    "migration:generate": "typeorm-ts-node-esm migration:generate -d src/database/data-source.ts",
-    "seed": "tsx src/database/seed.ts"
+    "migration:run": "typeorm-ts-node-commonjs migration:run -d src/database/data-source.ts",
+    "migration:generate": "typeorm-ts-node-commonjs migration:generate -d src/database/data-source.ts",
+    "seed": "ts-node src/database/seed.ts"
   },
   "dependencies": {
     "@ecommerce/types": "workspace:*",
@@ -35,7 +35,7 @@
     "@types/pg": "8.20.0",
     "supertest": "7.2.2",
     "@types/supertest": "7.2.0",
-    "tsx": "4.23.0",
+    "ts-node": "10.9.2",
     "vitest": "4.1.10"
   }
 }
