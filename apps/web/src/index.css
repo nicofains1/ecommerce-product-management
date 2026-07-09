@@ -1,18 +1,44 @@
 @import 'tailwindcss';
 
-/* Minimal semantic tokens so the UI compiles. Superseded by feat/web-theme. */
 @theme {
-  --color-background: #fafafa;
-  --color-foreground: #171717;
-  --color-surface: #ffffff;
-  --color-muted: #f5f5f5;
-  --color-muted-foreground: #525252;
-  --color-border: #e5e5e5;
-  --color-primary: #171717;
+  /* Brand: calm clinical teal for a laser tattoo removal store */
+  --color-primary: oklch(0.62 0.11 190);
+  --color-primary-foreground: oklch(0.99 0 0);
+  --color-primary-hover: oklch(0.55 0.11 190);
+
+  --color-secondary: oklch(0.96 0.02 190);
+  --color-secondary-foreground: oklch(0.36 0.06 190);
+
+  /* Neutral canvas and text */
+  --color-background: oklch(0.98 0.004 200);
+  --color-foreground: oklch(0.24 0.01 220);
+
+  --color-surface: oklch(1 0 0);
+  --color-surface-foreground: oklch(0.24 0.01 220);
+
+  --color-muted: oklch(0.95 0.006 210);
+  --color-muted-foreground: oklch(0.5 0.01 220);
+
+  --color-border: oklch(0.9 0.008 210);
+  --color-input: oklch(0.9 0.008 210);
+  --color-ring: oklch(0.62 0.11 190);
+
+  /* Semantic status colors */
+  --color-error: oklch(0.58 0.2 27);
+  --color-error-foreground: oklch(0.99 0 0);
+
+  --color-success: oklch(0.62 0.15 155);
+  --color-success-foreground: oklch(0.99 0 0);
+
+  --color-warning: oklch(0.75 0.15 75);
+  --color-warning-foreground: oklch(0.28 0.05 75);
 }
 
 @layer base {
   body {
-    @apply min-h-screen bg-neutral-50 text-neutral-900 antialiased;
+    @apply min-h-screen bg-background text-foreground antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 }
