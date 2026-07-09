@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { ProductGrid } from '../components/ui/ProductGrid';
+import { QueryState } from '../components/ui/QueryState';
 import { useProducts } from '../hooks/useProducts';
 
 export function ProductList() {
@@ -31,45 +32,24 @@ export function ProductList() {
     </div>
   );
 
-  if (isPending) {
-    return (
-      <section aria-label="Store">
-        {header}
-        <p className="text-sm text-muted-foreground">Loading products…</p>
-      </section>
-    );
-  }
-
-  if (isError) {
-    return (
-      <section aria-label="Store">
-        {header}
-        <p role="alert" className="text-sm text-error">
-          Could not load products. {error.message}
-        </p>
-      </section>
-    );
-  }
-
-  if (activeOnly) {
-    return (
-      <section aria-label="Store">
-        {header}
-        <ProductGrid products={products} emptyMessage="No products available yet." />
-      </section>
-    );
-  }
-
   return (
     <section aria-label="Store">
       {header}
-      <ProductGrid products={activeProducts} emptyMessage="No active products available yet." />
-      {inactiveProducts.length > 0 && (
-        <div className="mt-8">
-          <h3 className="mb-3 text-sm font-semibold text-muted-foreground">Inactive</h3>
-          <ProductGrid products={inactiveProducts} />
-        </div>
-      )}
+      <QueryState isPending={isPending} isError={isError} error={error} loadingLabel="Loading products…">
+        {activeOnly ? (
+          <ProductGrid products={products ?? []} emptyMessage="No products available yet." />
+        ) : (
+          <>
+            <ProductGrid products={activeProducts} emptyMessage="No active products available yet." />
+            {inactiveProducts.length > 0 && (
+              <div className="mt-8">
+                <h3 className="mb-3 text-sm font-semibold text-muted-foreground">Inactive</h3>
+                <ProductGrid products={inactiveProducts} />
+              </div>
+            )}
+          </>
+        )}
+      </QueryState>
     </section>
   );
 }

@@ -1,6 +1,7 @@
 import type { Product } from '@ecommerce/types';
 import { ProductForm } from '../components/ProductForm';
 import { ProductGrid } from '../components/ui/ProductGrid';
+import { QueryState } from '../components/ui/QueryState';
 import { useCreateProduct, useProducts, useToggleActive } from '../hooks/useProducts';
 import { cn } from '../lib/cn';
 
@@ -43,19 +44,13 @@ export function ProductManager() {
 
       <section aria-label="Manage products">
         <h2 className="mb-3 text-base font-semibold text-foreground">Products</h2>
-        {isPending ? (
-          <p className="text-sm text-muted-foreground">Loading products…</p>
-        ) : isError ? (
-          <p role="alert" className="text-sm text-error">
-            Could not load products. {error.message}
-          </p>
-        ) : (
+        <QueryState isPending={isPending} isError={isError} error={error} loadingLabel="Loading products…">
           <ProductGrid
-            products={products}
+            products={products ?? []}
             renderActions={renderActions}
             emptyMessage="No products yet. Create one above."
           />
-        )}
+        </QueryState>
       </section>
     </div>
   );
