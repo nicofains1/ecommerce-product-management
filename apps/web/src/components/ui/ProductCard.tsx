@@ -16,12 +16,12 @@ export function ProductCard({ product, actions }: ProductCardProps) {
 
   return (
     <article
-      className={`flex flex-col overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm transition-shadow hover:shadow-md ${
+      className={`flex flex-col overflow-hidden rounded-xl border border-border bg-surface shadow-sm transition-shadow hover:shadow-md ${
         isActive ? '' : 'opacity-60'
       }`}
       aria-disabled={!isActive}
     >
-      <div className="aspect-square w-full overflow-hidden bg-neutral-100">
+      <div className="aspect-square w-full overflow-hidden bg-muted">
         <img
           src={imageUrl}
           alt={name}
@@ -32,17 +32,17 @@ export function ProductCard({ product, actions }: ProductCardProps) {
 
       <div className="flex flex-1 flex-col gap-3 p-4">
         <div className="flex items-start justify-between gap-2">
-          <h3 className="line-clamp-2 font-medium text-neutral-900" title={name}>
+          <h3 className="line-clamp-2 font-medium text-foreground" title={name}>
             {name}
           </h3>
           {!isActive && (
-            <span className="shrink-0 rounded-full bg-neutral-200 px-2 py-0.5 text-xs font-medium text-neutral-600">
+            <span className="shrink-0 rounded-full bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">
               Inactive
             </span>
           )}
         </div>
 
-        <p className="text-lg font-semibold text-neutral-900">
+        <p className="text-lg font-semibold text-primary">
           {priceFormatter.format(price)}
         </p>
 
@@ -51,9 +51,9 @@ export function ProductCard({ product, actions }: ProductCardProps) {
             {attributes.map((attribute) => (
               <li
                 key={`${attribute.name}:${attribute.value}`}
-                className="rounded-md bg-neutral-100 px-2 py-1 text-xs text-neutral-700"
+                className="rounded-md bg-muted px-2 py-1 text-xs text-muted-foreground"
               >
-                <span className="font-medium text-neutral-500">
+                <span className="font-medium text-foreground">
                   {attribute.name}:
                 </span>{' '}
                 {attribute.value}
