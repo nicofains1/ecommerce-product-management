@@ -1,0 +1,41 @@
+{
+  "name": "@ecommerce/api",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "nest build",
+    "dev": "nest start --watch",
+    "start": "node dist/main.js",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "migration:run": "typeorm-ts-node-esm migration:run -d src/database/data-source.ts",
+    "migration:generate": "typeorm-ts-node-esm migration:generate -d src/database/data-source.ts",
+    "seed": "tsx src/database/seed.ts"
+  },
+  "dependencies": {
+    "@ecommerce/types": "workspace:*",
+    "@nestjs/common": "11.1.28",
+    "@nestjs/config": "4.0.4",
+    "@nestjs/core": "11.1.28",
+    "@nestjs/platform-express": "11.1.28",
+    "@nestjs/typeorm": "11.0.3",
+    "pg": "8.22.0",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2",
+    "typeorm": "0.3.30",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "11.0.23",
+    "@nestjs/schematics": "11.1.0",
+    "@nestjs/testing": "11.1.28",
+    "@types/express": "5.0.6",
+    "@types/pg": "8.20.0",
+    "supertest": "7.2.2",
+    "@types/supertest": "7.2.0",
+    "tsx": "4.23.0",
+    "vitest": "4.1.10"
+  }
+}

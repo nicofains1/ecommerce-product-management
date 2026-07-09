@@ -21,7 +21,7 @@ export const productSchema = z.object({
 export const createProductSchema = z.object({
   name: z.string().trim().min(1).max(120),
   imageUrl: z.url(),
-  price: z.number().positive().max(1_000_000),
+  price: z.number().nonnegative().max(1_000_000),
   attributes: z.array(attributeSchema).max(MAX_ATTRIBUTES).default([]),
 });
 
