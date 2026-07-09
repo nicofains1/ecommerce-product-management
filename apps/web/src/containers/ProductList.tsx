@@ -1,10 +1,16 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { ProductGrid } from '../components/ui/ProductGrid';
 import { useProducts } from '../hooks/useProducts';
 
 export function ProductList() {
   const [activeOnly, setActiveOnly] = useState(true);
   const { data: products, isPending, isError, error } = useProducts(!activeOnly);
+
+  const activeProducts = useMemo(() => (products ?? []).filter((product) => product.isActive), [products]);
+  const inactiveProducts = useMemo(
+    () => (products ?? []).filter((product) => !product.isActive),
+    [products],
+  );
 
   const toggle = (
     <label className="flex cursor-pointer items-center gap-2 text-sm text-muted-foreground">
@@ -53,9 +59,6 @@ export function ProductList() {
       </section>
     );
   }
-
-  const activeProducts = products.filter((product) => product.isActive);
-  const inactiveProducts = products.filter((product) => !product.isActive);
 
   return (
     <section aria-label="Store">

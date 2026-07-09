@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { TabButton } from './components/ui/TabButton';
 import { ManagementView } from './views/ManagementView';
 import { ShowView } from './views/ShowView';
 
@@ -20,24 +21,14 @@ export function App() {
             eCommerce Product Management
           </h1>
           <nav aria-label="Primary" className="flex gap-1 rounded-lg bg-muted p-1">
-            {TABS.map((tab) => {
-              const isActive = tab.id === activeTab;
-              return (
-                <button
-                  key={tab.id}
-                  type="button"
-                  onClick={() => setActiveTab(tab.id)}
-                  aria-current={isActive ? 'page' : undefined}
-                  className={`flex-1 rounded-md px-4 py-1.5 text-sm font-medium transition-colors sm:flex-none ${
-                    isActive
-                      ? 'bg-surface text-foreground shadow-sm'
-                      : 'text-muted-foreground hover:text-foreground'
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              );
-            })}
+            {TABS.map((tab) => (
+              <TabButton
+                key={tab.id}
+                label={tab.label}
+                isActive={tab.id === activeTab}
+                onClick={() => setActiveTab(tab.id)}
+              />
+            ))}
           </nav>
         </div>
       </header>
