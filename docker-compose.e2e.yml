@@ -1,0 +1,15 @@
+services:
+  db:
+    environment:
+      POSTGRES_DB: ecommerce_e2e
+    volumes:
+      - db-e2e-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d ecommerce_e2e"]
+
+  api:
+    environment:
+      DB_DATABASE: ecommerce_e2e
+
+volumes:
+  db-e2e-data:
