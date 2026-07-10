@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, Table, TableForeignKey } from 'typeorm';
+import { MigrationInterface, QueryRunner, Table, TableForeignKey, TableIndex } from 'typeorm';
 
 export class CreateProductsAndAttributes1720000000000 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -51,9 +51,18 @@ export class CreateProductsAndAttributes1720000000000 implements MigrationInterf
         onDelete: 'CASCADE',
       }),
     );
+
+    await queryRunner.createIndex(
+      'attributes',
+      new TableIndex({
+        name: 'idx_attributes_product_id',
+        columnNames: ['product_id'],
+      }),
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.dropIndex('attributes', 'idx_attributes_product_id');
     await queryRunner.dropTable('attributes', true);
     await queryRunner.dropTable('products', true);
   }

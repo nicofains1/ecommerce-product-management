@@ -2,6 +2,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  Index,
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
@@ -25,6 +26,7 @@ export class AttributeEntity {
   @JoinColumn({ name: 'product_id' })
   product!: ProductEntity;
 
+  @Index('idx_attributes_product_id')
   @Column({ name: 'product_id', type: 'uuid' })
   productId!: string;
 
