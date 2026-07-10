@@ -41,7 +41,7 @@ export function ProductForm({ onSubmit, isSubmitting = false }: ProductFormProps
     <form
       onSubmit={submit}
       noValidate
-      className="flex flex-col gap-5 rounded-[--radius-card] border border-border bg-surface p-6 shadow-[0_1px_2px_rgba(80,50,30,0.04),0_10px_30px_-16px_rgba(120,70,40,0.16)] sm:p-7"
+      className="flex flex-col gap-5 rounded-[--radius-card] border border-border bg-surface p-6 shadow-form sm:p-7"
     >
       <TextField
         id="product-name"

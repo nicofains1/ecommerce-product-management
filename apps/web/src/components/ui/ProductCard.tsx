@@ -31,7 +31,7 @@ export function ProductCard({ product, actions }: ProductCardProps) {
 
   return (
     <article
-      className={`group flex flex-col overflow-hidden rounded-[--radius-card] border border-border bg-surface shadow-[0_1px_2px_rgba(80,50,30,0.04),0_8px_24px_-12px_rgba(120,70,40,0.12)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_2px_4px_rgba(80,50,30,0.05),0_16px_36px_-14px_rgba(120,70,40,0.2)] ${
+      className={`group flex flex-col overflow-hidden rounded-[--radius-card] border border-border bg-surface shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-hover ${
         isActive ? '' : 'opacity-70'
       }`}
     >
