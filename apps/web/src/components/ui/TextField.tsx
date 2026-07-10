@@ -15,9 +15,10 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function T
   const errorId = error ? `${inputId}-error` : undefined;
 
   const inputClasses = cn(
-    'rounded-md border border-border bg-surface px-3 py-2 text-sm text-foreground shadow-sm',
-    'focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary',
-    error && 'border-error focus:border-error focus:ring-error',
+    'rounded-xl border border-border bg-background px-3.5 py-2.5 text-sm text-foreground',
+    'placeholder:text-muted-foreground/60',
+    'focus:border-primary focus:outline-none focus:ring-2 focus:ring-ring/40',
+    error && 'border-error focus:border-error focus:ring-error/30',
     className,
   );
 

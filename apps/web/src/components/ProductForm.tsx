@@ -1,9 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  createProductSchema,
-  type Attribute,
-  type CreateProductInput,
-} from '@ecommerce/types';
+import { createProductSchema, type Attribute, type CreateProductInput } from '@ecommerce/types';
 import { useForm } from 'react-hook-form';
 import { AttributeFields } from './AttributeFields.js';
 import { Button } from './ui/Button.js';
@@ -42,11 +38,16 @@ export function ProductForm({ onSubmit, isSubmitting = false }: ProductFormProps
   });
 
   return (
-    <form onSubmit={submit} noValidate className="flex flex-col gap-6 bg-surface">
+    <form
+      onSubmit={submit}
+      noValidate
+      className="flex flex-col gap-5 rounded-[--radius-card] border border-border bg-surface p-6 shadow-form sm:p-7"
+    >
       <TextField
         id="product-name"
         type="text"
-        label="Name"
+        label="Treatment name"
+        placeholder="Laser Removal - Small Area"
         error={errors.name?.message}
         {...register('name')}
       />
@@ -55,6 +56,7 @@ export function ProductForm({ onSubmit, isSubmitting = false }: ProductFormProps
         id="product-image-url"
         type="url"
         label="Image URL"
+        placeholder="https://…"
         error={errors.imageUrl?.message}
         {...register('imageUrl')}
       />
@@ -64,7 +66,7 @@ export function ProductForm({ onSubmit, isSubmitting = false }: ProductFormProps
         type="number"
         step="0.01"
         min="0"
-        label="Price"
+        label="Price (USD)"
         error={errors.price?.message}
         {...register('price', { valueAsNumber: true })}
       />
@@ -72,7 +74,7 @@ export function ProductForm({ onSubmit, isSubmitting = false }: ProductFormProps
       <AttributeFields control={control} register={register} errors={errors} />
 
       <Button type="submit" variant="primary" disabled={isSubmitting}>
-        {isSubmitting ? 'Saving…' : 'Create product'}
+        {isSubmitting ? 'Adding…' : 'Add treatment'}
       </Button>
     </form>
   );

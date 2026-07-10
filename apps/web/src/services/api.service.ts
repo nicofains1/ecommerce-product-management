@@ -1,17 +1,12 @@
 import type { ApiError as ApiErrorBody } from '@ecommerce/types';
 
-const BASE_URL: string =
-  import.meta.env.VITE_API_URL ?? 'http://localhost:3001/api';
+const BASE_URL: string = import.meta.env.VITE_API_URL ?? 'http://localhost:3001/api';
 
 export class ApiError extends Error {
   readonly statusCode: number;
   readonly errors?: Record<string, string[]>;
 
-  constructor(
-    statusCode: number,
-    message: string,
-    errors?: Record<string, string[]>,
-  ) {
+  constructor(statusCode: number, message: string, errors?: Record<string, string[]>) {
     super(message);
     this.name = 'ApiError';
     this.statusCode = statusCode;
@@ -28,17 +23,12 @@ function isApiErrorBody(value: unknown): value is ApiErrorBody {
   );
 }
 
-export async function request<T>(
-  path: string,
-  init?: RequestInit,
-): Promise<T> {
+export async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${BASE_URL}${path}`, {
     ...init,
     headers: {
       Accept: 'application/json',
-      ...(init?.body !== undefined
-        ? { 'Content-Type': 'application/json' }
-        : {}),
+      ...(init?.body !== undefined ? { 'Content-Type': 'application/json' } : {}),
       ...init?.headers,
     },
   });

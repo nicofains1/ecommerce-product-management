@@ -33,12 +33,34 @@ export function useCreateProduct(): UseMutationResult<Product, Error, CreateProd
 
 type ToggleActiveVariables = ToggleActiveInput & { id: string };
 
-export function useToggleActive(): UseMutationResult<Product, Error, ToggleActiveVariables> {
+interface ToggleContext {
+  previous: [readonly unknown[], Product[] | undefined][];
+}
+
+export function useToggleActive(): UseMutationResult<
+  Product,
+  Error,
+  ToggleActiveVariables,
+  ToggleContext
+> {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: ({ id, isActive }: ToggleActiveVariables) => toggleProductActive(id, isActive),
-    onSuccess: () => {
+    onMutate: async ({ id, isActive }) => {
+      await queryClient.cancelQueries({ queryKey: productKeys.all });
+      const previous = queryClient.getQueriesData<Product[]>({ queryKey: productKeys.all });
+      queryClient.setQueriesData<Product[]>({ queryKey: productKeys.all }, (list) =>
+        list?.map((product) => (product.id === id ? { ...product, isActive } : product)),
+      );
+      return { previous };
+    },
+    onError: (_error, _variables, context) => {
+      context?.previous.forEach(([key, data]) => {
+        queryClient.setQueryData(key, data);
+      });
+    },
+    onSettled: () => {
       void queryClient.invalidateQueries({ queryKey: productKeys.all });
     },
   });

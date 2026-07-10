@@ -14,13 +14,21 @@ export function App() {
   const [activeTab, setActiveTab] = useState<Tab>('store');
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <header className="sticky top-0 z-10 border-b border-border bg-surface/90 backdrop-blur">
-        <div className="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-4">
-          <h1 className="text-lg font-semibold tracking-tight sm:text-xl">
-            eCommerce Product Management
-          </h1>
-          <nav aria-label="Primary" className="flex gap-1 rounded-lg bg-muted p-1">
+    <div className="min-h-screen">
+      <header className="sticky top-0 z-10 border-b border-border bg-background/85 backdrop-blur">
+        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+          <div className="flex items-baseline gap-2.5">
+            <span className="font-display text-2xl font-semibold tracking-tight text-primary">
+              Removery
+            </span>
+            <span className="hidden text-sm text-muted-foreground sm:inline">
+              Laser tattoo removal
+            </span>
+          </div>
+          <nav
+            aria-label="Primary"
+            className="flex gap-1 self-start rounded-full bg-muted p-1 sm:self-auto"
+          >
             {TABS.map((tab) => (
               <TabButton
                 key={tab.id}
@@ -33,7 +41,7 @@ export function App() {
         </div>
       </header>
 
-      <main className="mx-auto max-w-5xl px-4 py-6 sm:px-6 sm:py-8">
+      <main className="mx-auto max-w-6xl px-5 py-8 sm:px-8 sm:py-12">
         {activeTab === 'store' ? <ShowView /> : <ManagementView />}
       </main>
     </div>
