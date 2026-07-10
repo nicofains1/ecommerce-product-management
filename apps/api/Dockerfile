@@ -11,8 +11,9 @@ RUN pnpm --filter @ecommerce/api build
 FROM base AS production
 ENV NODE_ENV=production
 RUN apk add --no-cache netcat-openbsd
-COPY --from=build /app ./
+COPY --from=build --chown=node:node /app ./
 RUN chmod +x /app/docker/api-entrypoint.sh
 WORKDIR /app/apps/api
+USER node
 EXPOSE 3000
 ENTRYPOINT ["/app/docker/api-entrypoint.sh"]
