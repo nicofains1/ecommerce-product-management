@@ -1,42 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Hanken+Grotesk:wght@400..700&display=swap');
 @import 'tailwindcss';
 
 @theme {
-  /* Brand: calm clinical teal for a laser tattoo removal store */
-  --color-primary: oklch(0.62 0.11 190);
-  --color-primary-foreground: oklch(0.99 0 0);
-  --color-primary-hover: oklch(0.55 0.11 190);
+  --font-display: 'Fraunces', ui-serif, Georgia, serif;
+  --font-sans: 'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif;
 
-  --color-secondary: oklch(0.96 0.02 190);
-  --color-secondary-foreground: oklch(0.36 0.06 190);
+  --color-background: oklch(0.972 0.012 42);
+  --color-foreground: oklch(0.3 0.028 40);
 
-  /* Neutral canvas and text */
-  --color-background: oklch(0.98 0.004 200);
-  --color-foreground: oklch(0.24 0.01 220);
+  --color-surface: oklch(0.992 0.006 48);
+  --color-surface-foreground: oklch(0.3 0.028 40);
 
-  --color-surface: oklch(1 0 0);
-  --color-surface-foreground: oklch(0.24 0.01 220);
+  --color-primary: oklch(0.68 0.11 32);
+  --color-primary-foreground: oklch(0.99 0.006 48);
+  --color-primary-hover: oklch(0.62 0.12 32);
 
-  --color-muted: oklch(0.95 0.006 210);
-  --color-muted-foreground: oklch(0.5 0.01 220);
+  --color-secondary: oklch(0.95 0.02 42);
+  --color-secondary-foreground: oklch(0.4 0.04 38);
 
-  --color-border: oklch(0.9 0.008 210);
-  --color-input: oklch(0.9 0.008 210);
-  --color-ring: oklch(0.62 0.11 190);
+  --color-muted: oklch(0.955 0.014 44);
+  --color-muted-foreground: oklch(0.54 0.025 40);
 
-  /* Semantic status colors */
-  --color-error: oklch(0.58 0.2 27);
-  --color-error-foreground: oklch(0.99 0 0);
+  --color-border: oklch(0.905 0.016 42);
+  --color-input: oklch(0.905 0.016 42);
+  --color-ring: oklch(0.68 0.11 32);
 
-  --color-success: oklch(0.62 0.15 155);
-  --color-success-foreground: oklch(0.99 0 0);
+  --color-error: oklch(0.6 0.16 25);
+  --color-error-foreground: oklch(0.99 0.006 48);
 
-  --color-warning: oklch(0.75 0.15 75);
-  --color-warning-foreground: oklch(0.28 0.05 75);
+  --color-success: oklch(0.7 0.08 150);
+  --color-success-foreground: oklch(0.99 0.006 48);
+
+  --color-warning: oklch(0.78 0.12 70);
+  --color-warning-foreground: oklch(0.32 0.05 60);
+
+  --radius-card: 1.25rem;
 }
 
 @layer base {
   body {
-    @apply min-h-screen bg-background text-foreground antialiased;
+    @apply min-h-screen bg-background font-sans text-foreground antialiased;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;

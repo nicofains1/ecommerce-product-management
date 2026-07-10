@@ -14,10 +14,7 @@ export function createProduct(input: CreateProductInput): Promise<Product> {
   });
 }
 
-export function toggleProductActive(
-  id: string,
-  isActive: boolean,
-): Promise<Product> {
+export function toggleProductActive(id: string, isActive: boolean): Promise<Product> {
   return request<Product>(`/products/${id}/active`, {
     method: 'PATCH',
     body: JSON.stringify({ isActive }),

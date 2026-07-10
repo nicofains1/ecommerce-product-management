@@ -8,10 +8,8 @@ export interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary:
-    'bg-primary text-primary-foreground font-semibold hover:bg-primary/90',
-  secondary:
-    'border border-border bg-muted text-foreground font-medium hover:bg-muted/80',
+  primary: 'bg-primary text-primary-foreground font-semibold hover:bg-primary-hover shadow-sm',
+  secondary: 'border border-border bg-surface text-foreground font-medium hover:bg-muted',
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
@@ -19,7 +17,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   ref,
 ) {
   const classes = cn(
-    'rounded-md px-4 py-2 text-sm transition-colors',
+    'rounded-full px-5 py-2.5 text-sm transition-colors',
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
     'disabled:cursor-not-allowed disabled:opacity-50',
     variantClasses[variant],
     className,
